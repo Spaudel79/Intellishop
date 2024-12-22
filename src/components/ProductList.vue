@@ -1,6 +1,14 @@
 <template>           
-
   <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">Product List</span>
+        <button class="btn btn-outline-primary" style="float: right;" @click="navigateToLogin">Login</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
     <div class="container mt-4">
       <h1 class="text-center">Our Products</h1>
       <div class="row">
@@ -43,8 +51,8 @@
         >
           Next
         </button>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -64,7 +72,7 @@ export default {
     this.fetchProducts();
   },
   methods: {
-    async fetchProducts(page=1) {
+    async fetchProducts(page = 1) {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/products?page=${page}`);
         this.products = response.data.results || [];
@@ -73,9 +81,13 @@ export default {
       } catch (error) {
         console.error("There was an error fetching the products!", error);
       }
+    },
+    navigateToLogin() {
+      // Replace with your actual login route
+      this.$router.push('/login');
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -100,5 +112,12 @@ export default {
 .row {
   display: flex;
   flex-wrap: wrap;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
 }
 </style>
