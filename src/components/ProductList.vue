@@ -2,10 +2,17 @@
   <div id="app">
     <!-- Navbar -->
     <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid d-flex justify-content-between">
+      <!-- <div class="container-fluid d-flex justify-content-between">
         <span class="navbar-brand mb-0 h1">Product List</span>
         <button class="btn btn-outline-primary" style="float: right;" @click="navigateToLogin">Login</button>
+      </div> -->
+
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Product List</a>
+        <!-- Login Modal Trigger -->
+        <LoginModal />
       </div>
+
     </nav>
 
     <!-- Main Content -->
@@ -58,8 +65,12 @@
 
 <script>
 import axios from 'axios';
+import LoginModal from "./LoginModal.vue";
 
 export default {
+  components: {
+    LoginModal, 
+  },
   data() {
     return {
       products: [],
