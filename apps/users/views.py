@@ -9,8 +9,19 @@ from django.contrib.auth import get_user_model
 from .serializers import UserSerializer, RegisterSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import logout
 
 User = get_user_model()
+
+
+
+class LogoutUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        # Log the user out
+        logout(request)
+        return Response({"message": "Logged out successfully"}, status=200)
 
 # User registration view
 class RegisterUserView(generics.CreateAPIView):
@@ -32,10 +43,13 @@ class LoginUserView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
-        username = request.data.get('username')
+        email = request.data.get('email')
         password = request.data.get('password')
-
-        user = User.objects.filter(username=username).first()
+        print(email)
+        print('email',email)
+        print('password:',password)
+        # breakpoint()
+        user = User.objects.filter(email=email).first()
         if user and user.check_password(password):
             token, created = Token.objects.get_or_create(user=user)
             return Response({"token": token.key})

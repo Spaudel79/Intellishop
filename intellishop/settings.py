@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import os  # Ensure this is at the top of settings.py
 
 from pathlib import Path
 
@@ -157,7 +158,10 @@ REST_FRAMEWORK = {
     ],
 }
 
-import os  # Ensure this is at the top of settings.py
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -8,7 +8,7 @@ class CustomUserAdmin(BaseUserAdmin):
     # Fields to display in the admin form
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'phone_number')}),  # Add custom fields here
+        (_('Personal info'), {'fields': ('first_name', 'last_name')}),  # Add custom fields here
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_admin', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
