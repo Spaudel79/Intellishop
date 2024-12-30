@@ -1,34 +1,28 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <Home/>
-  <!-- <Footer/> -->
-
+  <div id="app">
+    <Navbar @open-login-modal="showModal = true" />
+    <Home />
+    <!-- LoginModal listens for the close event -->
+    <LoginModal v-if="showModal" @close="showModal = false" />
+  </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import ProductList from './components/ProductList.vue';
-// import Footer from './components/Footer.vue';
 import Home from './views/Home.vue';
-
+import Navbar from './components/Navbar.vue';
+import LoginModal from './components/LoginModal.vue';
 
 export default {
   name: 'App',
   components: {
-    
     Home,
-  }
-}
+    Navbar,
+    LoginModal,
+  },
+  data() {
+    return {
+      showModal: false, // Controls the visibility of LoginModal
+    };
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

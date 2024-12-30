@@ -8,9 +8,10 @@
       </div> -->
 
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Product List</a>
+        <a class="navbar-brand" href="#">Intellishop</a>
         <!-- Login Modal Trigger -->
-        <LoginModal />
+        <!-- <LoginModal /> -->
+         <!-- <Navbar /> -->
       </div>
 
     </nav>
@@ -65,12 +66,14 @@
 
 <script>
 import axios from 'axios';
-import LoginModal from "./LoginModal.vue";
+// import LoginModal from "./LoginModal.vue";
+// import LoginModal from "./Navbar.vue";
+// import Navbar from './Navbar.vue';
 
 export default {
-  components: {
-    LoginModal, 
-  },
+  // components: {
+  //   Navbar,
+  // },
   data() {
     return {
       products: [],
