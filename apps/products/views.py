@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from surprise import Dataset, Reader, SVD
 import pandas as pd
 from rest_framework.views import APIView
+from .models import Rating, Product
 
 # List and create products
 
@@ -44,20 +45,19 @@ class ProductListCreateView(generics.ListCreateAPIView):
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAuthenticated]  # Only authenticated users can update or delete products
+    permission_classes = [AllowAny]  # Only authenticated users can update or delete products
 
-    def get_object(self):
-        obj = super().get_object()
-        if obj.created_by != self.request.user:
-            raise PermissionDenied("You don't have permission to access this product")
-        return obj
+    # def get_object(self):
+    #     obj = super().get_object()
+    #     if obj.created_by != self.request.user:
+    #         raise PermissionDenied("You don't have permission to access this product")
+    #     return obj
 
 #  Recommendations login
 
 class RecommendationAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        from yourapp.models import Rating, Product
-
+        
         # Get user_id from query params
         user_id = request.query_params.get('user_id')
 

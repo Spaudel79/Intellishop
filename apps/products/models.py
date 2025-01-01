@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -39,6 +40,17 @@ class Product(TimestampedModel):
     def __str__(self):
         return self.item_name
 
+
+from django.contrib.auth.models import User
+
+class Rating(TimestampedModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    rating = models.FloatField(blank=True, null=True)
+    
+
+    def __str__(self):
+        return f"{self.user.username} - {self.item.item_name} - {self.rating}"
 
 
 
