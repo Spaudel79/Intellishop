@@ -24,3 +24,21 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment variables files
+.env
+
+# Ignore Docker-related files
+*.log
+docker-compose.yml
+Dockerfile
+
+# Ignore data dump files
+data.json
+
